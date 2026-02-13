@@ -22,12 +22,12 @@ export async function generateMetadata(): Promise<Metadata> {
   try {
     const homepage = await getHomepage();
     return {
-      title: homepage.seo?.metaTitle ?? "Boréal Bois — Charpentier constructeur bois Lyon",
+      title: homepage.seo?.metaTitle ?? "Boréal Bois -Charpentier constructeur bois Lyon",
       description: homepage.seo?.metaDescription ?? "Boréal Bois, artisan charpentier constructeur bois en région lyonnaise et Nord Isère.",
     };
   } catch {
     return {
-      title: "Boréal Bois — Charpentier constructeur bois Lyon",
+      title: "Boréal Bois -Charpentier constructeur bois Lyon",
     };
   }
 }

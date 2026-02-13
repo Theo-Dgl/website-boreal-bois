@@ -27,7 +27,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname, "app/(payload)/admin"),
     },
     meta: {
-      titleSuffix: " — Boréal Bois",
+      titleSuffix: " -Boréal Bois",
     },
     components: {
       graphics: {

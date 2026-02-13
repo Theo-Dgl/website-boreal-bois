@@ -4,7 +4,7 @@ import "../globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Boréal Bois — Aménagement Bois Extérieur",
+    default: "Boréal Bois -Aménagement Bois Extérieur",
     template: "%s | Boréal Bois",
   },
   description:

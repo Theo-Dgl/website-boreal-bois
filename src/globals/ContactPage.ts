@@ -26,7 +26,7 @@ export const ContactPage: GlobalConfig = {
       name: "ctaLabel",
       type: "text",
       required: true,
-      defaultValue: "Devis gratuit — Réponse sous 24h",
+      defaultValue: "Devis gratuit -Réponse sous 24h",
       label: "Label CTA",
     },
     {
@@ -39,7 +39,7 @@ export const ContactPage: GlobalConfig = {
           type: "text",
           label: "Balise title",
           defaultValue:
-            "Contact & devis gratuit | Boréal Bois — Charpentier Lyon",
+            "Contact & devis gratuit | Boréal Bois -Charpentier Lyon",
         },
         {
           name: "metaDescription",

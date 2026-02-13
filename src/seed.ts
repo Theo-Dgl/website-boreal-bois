@@ -4,7 +4,7 @@ import { getPayloadClient } from "./lib/payload";
 const PRESTATIONS_SEED = [
   {
     slug: "ossature-bois",
-    title: "Ossature bois — Agrandissement & Surélévation",
+    title: "Ossature bois -Agrandissement & Surélévation",
     shortDescription:
       "Agrandissez ou surélevez votre maison avec une structure bois légère et performante.",
     description:
@@ -43,7 +43,7 @@ const PRESTATIONS_SEED = [
     sortOrder: 2,
     seo: {
       metaTitle:
-        "Terrasse bois sur mesure | Pin classe 4 écologique — Boréal Bois Lyon",
+        "Terrasse bois sur mesure | Pin classe 4 écologique -Boréal Bois Lyon",
       metaDescription:
         "Terrasse bois extérieure sur mesure en région lyonnaise. Pin traité classe 4 : durable, écologique et économique. Alternative au bois exotique. Devis gratuit.",
     },
@@ -89,7 +89,7 @@ const PRESTATIONS_SEED = [
     sortOrder: 4,
     seo: {
       metaTitle:
-        "Carport bois sur mesure | Toiture végétalisée — Boréal Bois Lyon",
+        "Carport bois sur mesure | Toiture végétalisée -Boréal Bois Lyon",
       metaDescription:
         "Carport bois simple ou double, toiture végétalisée ou traditionnelle. Douglas, chêne, mélèze. Région lyonnaise et Nord Isère. Devis gratuit.",
     },
@@ -216,27 +216,27 @@ const REALISATIONS_SEED = [
     sortOrder: 1,
   },
   {
-    title: "Pergola bioclimatique végétalisée — Crémieu",
+    title: "Pergola bioclimatique végétalisée -Crémieu",
     category: "Pergolas" as const,
     sortOrder: 2,
   },
   {
-    title: "Extension ossature bois — Morestel",
+    title: "Extension ossature bois -Morestel",
     category: "Abris" as const,
     sortOrder: 3,
   },
   {
-    title: "Carport double toiture végétalisée — Lyon 6e",
+    title: "Carport double toiture végétalisée -Lyon 6e",
     category: "Clôtures" as const,
     sortOrder: 4,
   },
   {
-    title: "Terrasse pin classe 4 — Bourgoin-Jallieu",
+    title: "Terrasse pin classe 4 -Bourgoin-Jallieu",
     category: "Terrasses" as const,
     sortOrder: 5,
   },
   {
-    title: "Charpente traditionnelle — La Tour-du-Pin",
+    title: "Charpente traditionnelle -La Tour-du-Pin",
     category: "Abris" as const,
     sortOrder: 6,
   },
@@ -251,7 +251,7 @@ const PARTENAIRES_SEED = [
     sortOrder: 1,
   },
   {
-    name: "Valentin Pion — Expert maison passive",
+    name: "Valentin Pion -Expert maison passive",
     description:
       "Diplômé en construction de maison passive, Valentin est notre partenaire de référence sur l'étanchéité à l'air et la performance énergétique. Ensemble, nous concevons des projets d'ossature bois qui allient confort, durabilité et haute performance thermique.",
     url: "#",
@@ -344,7 +344,7 @@ async function seed() {
     data: {
       hero: {
         title:
-          "Charpentier constructeur bois — Région lyonnaise & Nord Isère",
+          "Charpentier constructeur bois -Région lyonnaise & Nord Isère",
         description:
           "Boréal Bois, c'est la construction bois pensée autrement : des matériaux choisis, un savoir-faire artisanal et une vraie démarche écologique. De la charpente à la terrasse, on construit du solide, du durable et du beau.",
         ctaPrimary: "Demander un devis gratuit",
@@ -365,7 +365,7 @@ async function seed() {
       },
       seo: {
         metaTitle:
-          "Boréal Bois | Charpentier constructeur bois — Lyon & Nord Isère",
+          "Boréal Bois | Charpentier constructeur bois -Lyon & Nord Isère",
         metaDescription:
           "Charpentier constructeur bois en région lyonnaise. Ossature bois, terrasse, pergola, carport, isolation biosourcée. Devis gratuit, matériaux écologiques, circuits courts.",
       },
