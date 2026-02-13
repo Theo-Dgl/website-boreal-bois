@@ -1,6 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "./Container";
-import { LogoMark } from "../ui/LogoMark";
 
 interface FooterProps {
   companyName?: string;
@@ -45,9 +45,14 @@ export function Footer({
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2.5 text-2xl font-semibold tracking-tight">
-              <LogoMark className="h-7 w-7 text-terracotta" />
-              {companyName}
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/logo.png"
+                alt={companyName}
+                width={200}
+                height={75}
+                className="h-14 w-auto"
+              />
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-cream/75">
               {description}

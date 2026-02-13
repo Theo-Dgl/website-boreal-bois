@@ -33,7 +33,7 @@ export const RealisationsPage: GlobalConfig = {
           type: "text",
           label: "Balise title",
           defaultValue:
-            "Nos réalisations bois | Portfolio charpente & aménagement — Boréal Bois",
+            "Nos réalisations bois | Portfolio charpente & aménagement -Boréal Bois",
         },
         {
           name: "metaDescription",

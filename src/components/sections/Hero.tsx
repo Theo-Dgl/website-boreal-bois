@@ -14,7 +14,7 @@ interface HeroProps {
 
 export function Hero({
   title = "L'art du bois,\nau service de vos extérieurs",
-  description = "Artisan charpentier-menuisier en région lyonnaise. Terrasses, pergolas, abris — des aménagements bois sur mesure, conçus pour durer.",
+  description = "Artisan charpentier-menuisier en région lyonnaise. Terrasses, pergolas, abris -des aménagements bois sur mesure, conçus pour durer.",
   ctaPrimary = "Découvrir nos prestations",
   ctaSecondary = "Demander un devis",
 }: HeroProps) {
@@ -32,11 +32,11 @@ export function Hero({
         style={{ y: backgroundY }}
         className="absolute inset-0 -top-[10%] h-[120%]"
       >
-        {/* Placeholder gradient — will be replaced by a real photo */}
+        {/* Placeholder gradient -will be replaced by a real photo */}
         <div className="h-full w-full bg-gradient-to-br from-forest via-deep-wood/80 to-moss" />
       </motion.div>
 
-      {/* Overlay — lighter to let images show through */}
+      {/* Overlay -lighter to let images show through */}
       <div className="absolute inset-0 bg-gradient-to-r from-forest/50 to-forest/20" />
 
       {/* Content */}

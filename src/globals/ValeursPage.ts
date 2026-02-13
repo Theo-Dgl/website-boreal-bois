@@ -53,7 +53,7 @@ export const ValeursPage: GlobalConfig = {
           type: "text",
           label: "Balise title",
           defaultValue:
-            "Nos valeurs écologiques | Essences locales, biosourcé — Boréal Bois",
+            "Nos valeurs écologiques | Essences locales, biosourcé -Boréal Bois",
         },
         {
           name: "metaDescription",

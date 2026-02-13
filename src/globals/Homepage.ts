@@ -37,7 +37,7 @@ export const Homepage: GlobalConfig = {
           type: "text",
           required: true,
           defaultValue:
-            "Charpentier constructeur bois — Région lyonnaise & Nord Isère",
+            "Charpentier constructeur bois -Région lyonnaise & Nord Isère",
           label: "Titre (H1)",
         },
         {

@@ -40,8 +40,8 @@ export function Card({
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-deep-wood/20 to-forest/10">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="text-forest/25">
+          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-deep-wood/30 to-forest/20">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="text-forest/30">
               <rect width="18" height="18" x="3" y="3" rx="2" />
               <circle cx="9" cy="9" r="2" />
               <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />

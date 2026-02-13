@@ -32,7 +32,7 @@ export const PrestationsHub: GlobalConfig = {
           type: "text",
           label: "Balise title",
           defaultValue:
-            "Nos prestations bois | Ossature, terrasse, pergola, carport — Boréal Bois Lyon",
+            "Nos prestations bois | Ossature, terrasse, pergola, carport -Boréal Bois Lyon",
         },
         {
           name: "metaDescription",

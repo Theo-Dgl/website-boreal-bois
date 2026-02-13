@@ -56,7 +56,7 @@ export function Prestations({ prestations }: PrestationsProps) {
               const imageSrc =
                 typeof prestation.image === "object" && prestation.image?.url
                   ? prestation.image.url
-                  : "/images/terrasse-placeholder.jpg";
+                  : undefined;
               const imageAlt =
                 typeof prestation.image === "object" && prestation.image?.alt
                   ? prestation.image.alt

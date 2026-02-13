@@ -1,5 +1,72 @@
 import "dotenv/config";
+import type { Payload } from "payload";
 import { getPayloadClient } from "./lib/payload";
+
+const PRESTATION_IMAGES: Record<string, { url: string; alt: string }> = {
+  "ossature-bois": {
+    url: "https://images.unsplash.com/photo-1741916540147-9be1d2b20d32?w=1200&q=80",
+    alt: "Construction ossature bois",
+  },
+  terrasses: {
+    url: "https://images.unsplash.com/photo-1560990883-9b76fec399a9?w=1200&q=80",
+    alt: "Terrasse bois extérieure",
+  },
+  pergolas: {
+    url: "https://images.unsplash.com/photo-1663313061310-78e67e1aa400?w=1200&q=80",
+    alt: "Pergola bois dans un jardin",
+  },
+  carport: {
+    url: "https://images.unsplash.com/photo-1758648321275-3168438d396d?w=1200&q=80",
+    alt: "Carport bois pour voiture",
+  },
+  isolation: {
+    url: "https://images.unsplash.com/photo-1701538517775-f94a4a6805ce?w=1200&q=80",
+    alt: "Isolation thermique biosourcée",
+  },
+  charpente: {
+    url: "https://images.unsplash.com/photo-1747546264021-f2cee5357046?w=1200&q=80",
+    alt: "Charpente bois traditionnelle",
+  },
+  abris: {
+    url: "https://images.unsplash.com/photo-1661351230770-dee326377478?w=1200&q=80",
+    alt: "Abri de jardin en bois",
+  },
+  balcon: {
+    url: "https://images.unsplash.com/photo-1716835540597-b9b3dc5c9417?w=1200&q=80",
+    alt: "Balcon bois sur maison",
+  },
+  ameublement: {
+    url: "https://images.unsplash.com/photo-1589863089941-51eddece5107?w=1200&q=80",
+    alt: "Meuble en bois brut artisanal",
+  },
+};
+
+const REALISATION_IMAGES: Array<{ url: string; alt: string }> = [
+  {
+    url: "https://images.unsplash.com/photo-1757940807466-df4b14d795a8?w=1200&q=80",
+    alt: "Terrasse bois surélevée avec balcon et pergola",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1575389178221-5c3567f2128f?w=1200&q=80",
+    alt: "Pergola bioclimatique végétalisée",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1712901523303-a7703c916631?w=1200&q=80",
+    alt: "Extension ossature bois moderne",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1706048111522-e4865f909940?w=1200&q=80",
+    alt: "Carport double en bois avec toiture végétalisée",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1613544723366-448490ac466b?w=1200&q=80",
+    alt: "Terrasse en pin classe 4",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1767537551488-770e15b15173?w=1200&q=80",
+    alt: "Charpente traditionnelle en bois massif",
+  },
+];
 
 const PRESTATIONS_SEED = [
   {
@@ -222,12 +289,12 @@ const REALISATIONS_SEED = [
   },
   {
     title: "Extension ossature bois — Morestel",
-    category: "Abris" as const,
+    category: "Ossature bois" as const,
     sortOrder: 3,
   },
   {
     title: "Carport double toiture végétalisée — Lyon 6e",
-    category: "Clôtures" as const,
+    category: "Carports" as const,
     sortOrder: 4,
   },
   {
@@ -237,7 +304,7 @@ const REALISATIONS_SEED = [
   },
   {
     title: "Charpente traditionnelle — La Tour-du-Pin",
-    category: "Abris" as const,
+    category: "Charpente" as const,
     sortOrder: 6,
   },
 ];
@@ -247,7 +314,7 @@ const PARTENAIRES_SEED = [
     name: "Les Ateliers DAR",
     description:
       "Entreprise générale du bâtiment, Les Ateliers DAR font appel à Boréal Bois pour toute la partie construction bois et charpente de leurs chantiers. Cette collaboration nous permet d'intervenir sur des projets complets, de la structure à la finition, avec la garantie d'un travail coordonné et professionnel.",
-    url: "https://lesatelierdar.com",
+    url: "https://www.lesateliersdar.fr/",
     sortOrder: 1,
   },
   {
@@ -259,62 +326,118 @@ const PARTENAIRES_SEED = [
   },
 ];
 
+async function uploadImageFromUrl(
+  payload: Payload,
+  imageUrl: string,
+  alt: string,
+): Promise<string> {
+  console.log(`  Fetching image: ${alt}...`);
+  const response = await fetch(imageUrl);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch image ${imageUrl}: ${response.status}`);
+  }
+
+  const arrayBuffer = await response.arrayBuffer();
+  const buffer = Buffer.from(arrayBuffer);
+  const contentType = response.headers.get("content-type") || "image/jpeg";
+
+  const urlSlug = alt
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+  const extension = contentType.includes("png") ? "png" : "jpg";
+  const filename = `${urlSlug}.${extension}`;
+
+  const media = await payload.create({
+    collection: "media",
+    data: { alt },
+    file: {
+      data: buffer,
+      size: buffer.length,
+      name: filename,
+      mimetype: contentType,
+    },
+  });
+
+  console.log(`  Uploaded media: ${filename} (id: ${media.id})`);
+  return media.id as string;
+}
+
 async function seed() {
   const payload = await getPayloadClient();
 
+  // Clear existing data (including media)
+  console.log("Clearing existing data...");
+  for (const collection of [
+    "prestations",
+    "realisations",
+    "partenaires",
+    "media",
+  ] as const) {
+    const existing = await payload.find({ collection, limit: 100 });
+    for (const doc of existing.docs) {
+      await payload.delete({ collection, id: doc.id });
+    }
+    console.log(`  Cleared ${existing.docs.length} ${collection}`);
+  }
+
+  // Upload prestation images
+  console.log("Uploading prestation images...");
+  const prestationMediaIds: Record<string, string> = {};
+  for (const [slug, image] of Object.entries(PRESTATION_IMAGES)) {
+    try {
+      prestationMediaIds[slug] = await uploadImageFromUrl(
+        payload,
+        image.url,
+        image.alt,
+      );
+    } catch (error) {
+      console.error(`  Failed to upload image for ${slug}:`, error);
+    }
+  }
+
+  // Upload realisation images
+  console.log("Uploading realisation images...");
+  const realisationMediaIds: string[] = [];
+  for (const image of REALISATION_IMAGES) {
+    try {
+      const mediaId = await uploadImageFromUrl(payload, image.url, image.alt);
+      realisationMediaIds.push(mediaId);
+    } catch (error) {
+      console.error(`  Failed to upload image for ${image.alt}:`, error);
+      realisationMediaIds.push("");
+    }
+  }
+
   console.log("Seeding prestations...");
   for (const prestation of PRESTATIONS_SEED) {
-    const existing = await payload.find({
-      collection: "prestations",
-      where: { slug: { equals: prestation.slug } },
-      limit: 1,
-    });
-    if (existing.docs.length > 0) {
-      console.log(`  Skipping "${prestation.title}" (already exists)`);
-      continue;
-    }
-
     await payload.create({
       collection: "prestations",
       data: {
         ...prestation,
         features: prestation.features.map((feature) => ({ feature })),
+        image: prestationMediaIds[prestation.slug] || undefined,
       },
     });
     console.log(`  Created "${prestation.title}"`);
   }
 
   console.log("Seeding realisations...");
-  for (const realisation of REALISATIONS_SEED) {
-    const existing = await payload.find({
-      collection: "realisations",
-      where: { title: { equals: realisation.title } },
-      limit: 1,
-    });
-    if (existing.docs.length > 0) {
-      console.log(`  Skipping "${realisation.title}" (already exists)`);
-      continue;
-    }
-
+  for (let i = 0; i < REALISATIONS_SEED.length; i++) {
+    const realisation = REALISATIONS_SEED[i];
+    const mediaId = realisationMediaIds[i];
     await payload.create({
       collection: "realisations",
-      data: realisation,
+      data: {
+        ...realisation,
+        image: mediaId || undefined,
+      },
     });
     console.log(`  Created "${realisation.title}"`);
   }
 
   console.log("Seeding partenaires...");
   for (const partenaire of PARTENAIRES_SEED) {
-    const existing = await payload.find({
-      collection: "partenaires",
-      where: { name: { equals: partenaire.name } },
-      limit: 1,
-    });
-    if (existing.docs.length > 0) {
-      console.log(`  Skipping "${partenaire.name}" (already exists)`);
-      continue;
-    }
-
     await payload.create({
       collection: "partenaires",
       data: partenaire,
