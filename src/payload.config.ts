@@ -3,6 +3,7 @@ import { fileURLToPath } from "url";
 import { buildConfig } from "payload";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
 import sharp from "sharp";
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
@@ -51,6 +52,17 @@ export default buildConfig({
     ValeursPage,
     RealisationsPage,
     ContactPage,
+  ],
+  plugins: [
+    ...(process.env.BLOB_READ_WRITE_TOKEN
+      ? [
+          vercelBlobStorage({
+            token: process.env.BLOB_READ_WRITE_TOKEN,
+            collections: { media: true },
+            clientUploads: true,
+          }),
+        ]
+      : []),
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",

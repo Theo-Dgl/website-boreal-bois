@@ -1,7 +1,9 @@
 export function Logo() {
   return (
-    <div style={{ fontSize: "1.25rem", fontWeight: 600 }}>
-      Boréal Bois
-    </div>
+    <img
+      src="/logo.png"
+      alt="Boréal Bois"
+      style={{ height: "2.5rem", width: "auto" }}
+    />
   );
 }

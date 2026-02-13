@@ -14,6 +14,7 @@
     "@payloadcms/db-mongodb": "^3.76.1",
     "@payloadcms/next": "^3.76.1",
     "@payloadcms/richtext-lexical": "^3.76.1",
+    "@payloadcms/storage-vercel-blob": "^3.76.1",
     "dotenv": "^17.3.1",
     "framer-motion": "^12.34.0",
     "graphql": "^16.12.0",

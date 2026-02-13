@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "./Container";
 import { Button } from "../ui/Button";
-import { LogoMark } from "../ui/LogoMark";
 
 const NAV_LINKS = [
   { label: "Prestations", href: "#prestations" },
@@ -49,12 +49,15 @@ export function Header() {
         <Container>
           <div className="flex h-18 items-center justify-between md:h-20">
             {/* Logo */}
-            <Link
-              href="/"
-              className="flex items-center gap-2.5 text-xl font-semibold tracking-tight text-cream"
-            >
-              <LogoMark className="h-7 w-7 text-terracotta" />
-              Boréal Bois
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/logo.png"
+                alt="Boréal Bois"
+                width={160}
+                height={60}
+                className="h-10 w-auto md:h-12"
+                priority
+              />
             </Link>
 
             {/* Desktop Nav */}
