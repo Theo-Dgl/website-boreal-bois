@@ -222,12 +222,12 @@ const REALISATIONS_SEED = [
   },
   {
     title: "Extension ossature bois -Morestel",
-    category: "Abris" as const,
+    category: "Ossature bois" as const,
     sortOrder: 3,
   },
   {
     title: "Carport double toiture végétalisée -Lyon 6e",
-    category: "Clôtures" as const,
+    category: "Carports" as const,
     sortOrder: 4,
   },
   {
@@ -237,7 +237,7 @@ const REALISATIONS_SEED = [
   },
   {
     title: "Charpente traditionnelle -La Tour-du-Pin",
-    category: "Abris" as const,
+    category: "Charpente" as const,
     sortOrder: 6,
   },
 ];
@@ -261,6 +261,16 @@ const PARTENAIRES_SEED = [
 
 async function seed() {
   const payload = await getPayloadClient();
+
+  // Clear existing data
+  console.log("Clearing existing data...");
+  for (const collection of ["prestations", "realisations", "partenaires"] as const) {
+    const existing = await payload.find({ collection, limit: 100 });
+    for (const doc of existing.docs) {
+      await payload.delete({ collection, id: doc.id });
+    }
+    console.log(`  Cleared ${existing.docs.length} ${collection}`);
+  }
 
   console.log("Seeding prestations...");
   for (const prestation of PRESTATIONS_SEED) {
