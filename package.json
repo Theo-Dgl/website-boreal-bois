@@ -1,17 +1,28 @@
 {
-  "name": "boreal-bois-temp",
+  "name": "boreal-bois",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "seed": "npx tsx src/seed.ts",
+    "payload": "npx payload"
   },
   "dependencies": {
-    "next": "16.1.6",
+    "@payloadcms/db-mongodb": "^3.76.1",
+    "@payloadcms/next": "^3.76.1",
+    "@payloadcms/richtext-lexical": "^3.76.1",
+    "dotenv": "^17.3.1",
+    "framer-motion": "^12.34.0",
+    "graphql": "^16.12.0",
+    "next": "^15.4.11",
+    "payload": "^3.76.1",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "sass": "^1.97.3",
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -19,8 +30,9 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.1.6",
+    "eslint-config-next": "^15.4.11",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }
